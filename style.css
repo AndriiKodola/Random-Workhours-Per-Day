@@ -25,6 +25,7 @@ input:focus {
   width: 200px;
   background-color: #e3be5e;
   border-radius: 5px 5px 10px 10px;
+  border-color: #cfcfca #cfcfca #7d8183 #7d8183;
 }
 
 #copy-button {
@@ -33,7 +34,7 @@ input:focus {
   border: none;
   background-color: #b6e7c5;
   border-radius: 20px 20px 0 20px;
-  box-shadow: 1px 1px 2px 0 #000;
+  box-shadow: 1px 0 2px 0 #000;
 }
 
 #schedule {
@@ -44,6 +45,7 @@ input:focus {
 .table-header, .table-footer {
   border: none;
   padding-top: 10px;
+  width: 150px;
 }
 
 td.day {

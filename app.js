@@ -1,6 +1,8 @@
 const input = document.getElementById('input-form');
 const inputFields = input.querySelectorAll('input[type="text"]');
 const container = document.getElementById('table-container');
+const copyToCCButton = document.getElementById('copy-button');
+const tableBody = document.getElementsByTagName('tbody')[0];
 const table = document.getElementById('schedule');
 const today = new Date();
 const currYear = today.getFullYear();
@@ -74,22 +76,8 @@ const getHoursPerDay = () => {
 };
 
 const generateSchedule = hoursPerDay => {
-  const table = document.getElementById('schedule');
-  const tableHeader = document.createElement('tr');
-  const daysHeader = document.createElement('th');
-  const hoursHeader = document.createElement('th');
-  const total = document.createElement('tr');
-  const totalText = document.createElement('th');
-  const totalSum = document.createElement('th');
+  const totalSum = document.getElementsByClassName('table-footer')[1];
   let totalHours = 0;
-
-  daysHeader.classList.add('table-header');
-  hoursHeader.classList.add('table-header');
-  daysHeader.innerText = 'Date';
-  hoursHeader.innerText = 'Work hours';
-  tableHeader.appendChild(daysHeader);
-  tableHeader.appendChild(hoursHeader);
-  table.appendChild(tableHeader);
 
   for (let i = 0; i < currMonth.length; i++) {
     const currTableDay = document.createElement('tr');
@@ -110,16 +98,10 @@ const generateSchedule = hoursPerDay => {
     }
     currTableDay.appendChild(currTableDate);
     currTableDay.appendChild(currTableWorkhours);
-    table.appendChild(currTableDay);
+    tableBody.appendChild(currTableDay);
   }
 
-  totalText.classList.add('table-footer');
-  totalSum.classList.add('table-footer');
-  totalText.innerText = 'Total';
   totalSum.innerText = totalHours;
-  total.appendChild(totalText);
-  total.appendChild(totalSum);
-  table.appendChild(total);
 };
 
 const selectElementContents = el => {
@@ -142,20 +124,6 @@ const selectElementContents = el => {
 	}
 }
 
-const createCopyToCCButton = () => {
-  const copyToCCButton = document.createElement('button');
-  copyToCCButton.setAttribute('id', 'copy-button');
-  copyToCCButton.innerText = 'Copy table to clipboard';
-  container.insertBefore(copyToCCButton, table);
-
-  copyToCCButton.addEventListener('click', () => {
-    selectElementContents(table);
-    document.execCommand('copy');
-
-    alert('Table is in clipboard now!');
-  });
-};
-
 input.addEventListener('input', event => {
   for (let i = 0; i < inputFields.length; i++) {
     if (event.target !== inputFields[i]) {
@@ -171,11 +139,17 @@ input.addEventListener('input', event => {
 
 input.addEventListener('submit', event => {
   const neededHoursPerDay = getHoursPerDay();
-  table.innerHTML = '';
+  tableBody.innerHTML = '';
   inputFields.forEach( input => input.disabled = false );
 
   event.preventDefault();
-
-  createCopyToCCButton();
+  
   generateSchedule(neededHoursPerDay);
+});
+
+copyToCCButton.addEventListener('click', () => {
+  selectElementContents(table);
+  document.execCommand('copy');
+
+  alert('Table is in clipboard now!');
 });

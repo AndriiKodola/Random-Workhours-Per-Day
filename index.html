@@ -17,8 +17,22 @@
     </form>
   </div>
   <div id="table-container">
+    <button id="copy-button">Copy table to clipboard</button>
     <table id="schedule" border="1">
-      <!-- Table container -->
+      <thead>
+        <tr>
+          <th class="table-header">Date</th>
+          <th class="table-header">Work hours</th>
+        </tr>
+      <tbody>
+        <!-- Table body container -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="table-footer">Total</th>
+          <th class="table-footer"></th>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <script type="text/javascript" src="./app.js">
