@@ -8,11 +8,22 @@
   <div id="input-container">
     <form id="input-form" action="index.html" method="post">
       <span>Please, enter:</span><br>
-      <input type="text" name="hours-day" placeholder=" needed hours per day">
-      <span>or</span><br>
-      <input type="text" name="hours-week" placeholder=" needed hours per week">
-      <span>or</span><br>
-      <input type="text" name="hours-month" placeholder=" needed hours per month"><br>
+      <div id="input-hours">
+        <input type="text" name="hours-day" placeholder=" needed hours per day">
+        <span>or</span><br>
+        <input type="text" name="hours-week" placeholder=" needed hours per week">
+        <span>or</span><br>
+        <input type="text" name="hours-month" placeholder=" needed hours per month"><br>
+      </div>
+      <div id="input-scatter">
+        <span>Scatter per day:</span><br>
+        <input type="text" name="scatter" placeholder=" default- no scatter"><br>
+      </div>
+      <div id="input-month">
+        <span>Schedule for month:</span><br>
+        <input type="text" name="month" placeholder=" default- current month"><br>
+        <input type="text" name="year" placeholder=" default- current year"><br>
+      </div>
       <button id="submit-button" type="submit">Generate new schedule</button>
     </form>
   </div>
@@ -35,6 +46,5 @@
       </tfoot>
     </table>
   </div>
-  <script type="text/javascript" src="./app.js">
-  </script>
+  <script type="text/javascript" src="./app.js"></script>
 </body>
